@@ -85,6 +85,13 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'Something Important',
+    date: 'April 21st, 2019',
+    firstParagraph: `Zombie ipsum reversus ab viral inferno, nam rick grimes malum cerebro. De carne lumbering animata corpora quaeritis. Summus brains sit​​, morbo vel maleficia? De apocalypsi gorger omero undead survivor dictum mauris. Hi mindless mortuis soulless creaturas, imo evil stalking monstra adventus resi dentevil vultus comedat cerebella viventium. Qui animated corpse, cricket bat max brucks terribilem incessu zomby. The voodoo sacerdos flesh eater, suscitat mortuos comedere carnem virus. Zonbi tattered for solum oculi eorum defunctis go lum cerebro. Nescio brains an Undead zombies. Sicut malus putrid voodoo horror. Nigh tofth eliv ingdead.`,
+    secondParagraph:`Zombie ipsum reversus ab viral inferno, nam rick grimes malum cerebro. De carne lumbering animata corpora quaeritis. Summus brains sit​​, morbo vel maleficia? De apocalypsi gorger omero undead survivor dictum mauris. Hi mindless mortuis soulless creaturas, imo evil stalking monstra adventus resi dentevil vultus comedat cerebella viventium. Qui animated corpse, cricket bat max brucks terribilem incessu zomby. The voodoo sacerdos flesh eater, suscitat mortuos comedere carnem virus. Zonbi tattered for solum oculi eorum defunctis go lum cerebro. Nescio brains an Undead zombies. Sicut malus putrid voodoo horror. Nigh tofth eliv ingdead.`,
+    thirdParagraph: `Zombie ipsum reversus ab viral inferno, nam rick grimes malum cerebro. De carne lumbering animata corpora quaeritis. Summus brains sit​​, morbo vel maleficia? De apocalypsi gorger omero undead survivor dictum mauris. Hi mindless mortuis soulless creaturas, imo evil stalking monstra adventus resi dentevil vultus comedat cerebella viventium. Qui animated corpse, cricket bat max brucks terribilem incessu zomby. The voodoo sacerdos flesh eater, suscitat mortuos comedere carnem virus. Zonbi tattered for solum oculi eorum defunctis go lum cerebro. Nescio brains an Undead zombies. Sicut malus putrid voodoo horror. Nigh tofth eliv ingdead.`,
   }
 ];
 
@@ -112,3 +119,50 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+const articleContainer = document.querySelector('.articles');
+
+data.map(info => {
+  articleContainer.appendChild(createArticle(info.title, info.date, info.firstParagraph, info.secondParagraph, info.thirdParagraph))
+});
+
+function createArticle(title, date, firstParagraph, secondParagraph, thirdParagraph) {
+
+// define new elements
+  const article = document.createElement('div');
+  const articleTitle = document.createElement('h2');
+  const articleDate = document.createElement('p');
+  const para1 = document.createElement('p');
+  const para2 = document.createElement('p');
+  const para3 = document.createElement('p');
+  const expand = document.createElement('span');
+
+// Setup structure of elements 
+  article.appendChild(articleTitle);
+  article.appendChild(articleDate);
+  article.appendChild(para1);
+  article.appendChild(para2);
+  article.appendChild(para3);
+  article.appendChild(expand);
+
+  
+ // set class names
+  article.classList.add('article');
+  articleDate.classList.add('date');
+  expand.classList.add('expandButton');
+  
+ // set text content 
+  articleTitle.textContent = title;
+  articleDate.textContent = date;
+  para1.textContent = firstParagraph;
+  para2.textContent = secondParagraph;
+  para3.textContent = thirdParagraph;
+  expand.textContent = "Open for more"
+  
+  expand.addEventListener('click', () => {
+    article.classList.toggle('article-open');
+  });
+
+  return article;
+}
+
+
